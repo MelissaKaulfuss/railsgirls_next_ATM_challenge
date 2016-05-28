@@ -1,11 +1,18 @@
-ROMAN_NUMERALS = { 1 => 'I',4=>'IV',5=> 'V',6=>'VI',7=> 'VII',8=> 'VIII',9=> 'IX',10=> 'X'}
+ROMAN_NUMERALS = { 1 => 'I',5=> 'V',10=> 'X'}
 
 def roman_numerals(english_numeral)
 	#sh_numeral <= 3
 	if	[1,2,3].include? english_numeral
-		return 'I' * english_numeral
+		return ROMAN_NUMERALS[1] * english_numeral
 	end
 
+	if [6, 7, 8].include? english_numeral
+		return ROMAN_NUMERALS[5] + (ROMAN_NUMERALS[1] * (english_numeral % 5))
+	end
+
+	if [4, 9].include? english_numeral
+		return ROMAN_NUMERALS[1] + ROMAN_NUMERALS[english_numeral + 1]
+	end
 
 	ROMAN_NUMERALS[english_numeral]
 end
